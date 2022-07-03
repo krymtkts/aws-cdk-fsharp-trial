@@ -1,20 +1,33 @@
+# CDK F# trial project
 
-# Welcome to your CDK F# project!
+Now not working due to the following areas.
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`AwsCdkFsharpStack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+```yaml
+EventPattern:
+  source:
+    - aws.s3
+  detail-type:
+    - Object Created
+  detail:
+    bucket:
+      name:
+        - Ref: bucket
+    object:
+      key:
+        - prefix: test/
+```
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+```fsharp
+EventPattern =
+    EventPattern(
+        Source = [| "aws.s3" |],
+        DetailType = [| "Object Created" |],
+        Detail =
+            dict [ ("bucket", dict [ ("name", [| bucket.BucketName |]) ])
+                    ("object", dict [ ("key", [| dict [ ("prefix", "test/") ] |]) ]) ]
+    )
+```
 
-It uses the [.NET Core CLI](https://docs.microsoft.com/dotnet/articles/core/) to compile and execute your project.
-
-## Useful commands
-
-* `dotnet build src` compile this app
-* `cdk ls`           list all stacks in the app
-* `cdk synth`        emits the synthesized CloudFormation template
-* `cdk deploy`       deploy this stack to your default AWS account/region
-* `cdk diff`         compare deployed stack with current state
-* `cdk docs`         open CDK documentation
-
-Enjoy!
+```plaintext
+Unhandled exception. System.ArgumentException: Could not infer JSII type for .NET type 'IDictionary`2' (Parameter 'type')
+```
