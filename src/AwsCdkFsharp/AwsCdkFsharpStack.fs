@@ -5,7 +5,6 @@ open Amazon.CDK.AWS.S3
 open Amazon.CDK.AWS.Lambda
 open Amazon.CDK.AWS.Logs
 open Amazon.CDK.AWS.Events
-open System.Collections.Generic
 open Amazon.CDK.AWS.Events.Targets
 
 type AwsCdkFsharpStack(scope, id, props) as this =
@@ -31,20 +30,14 @@ type AwsCdkFsharpStack(scope, id, props) as this =
                 FunctionName = "SampleFunction",
                 Description = "sample function.",
                 Runtime = Runtime.DOTNET_6,
-                Code = Code.FromAsset("./src/api/bin/"),
-                Handler = "api::api.Function::HunctionHandler",
+                Code = Code.FromAsset("./src/api/bin/Debug/"),
+                Handler = "api::api.Function::FunctionHandler",
                 Architecture = Architecture.ARM_64,
                 MemorySize = (Some 128.0 |> Option.toNullable),
                 Timeout = Duration.Seconds(10),
                 LogRetention = (Some RetentionDays.ONE_DAY |> Option.toNullable)
             )
         )
-
-    let key: IDictionary<string, obj> = dict [ "prefix", "/" ]
-
-    let detail: IDictionary<string, obj> =
-        dict [ "bucket", dict [ "name", [| bucket.BucketName |] ]
-               "object", dict [ "key", [| key |] ] ]
 
     do
         Rule(
@@ -54,7 +47,13 @@ type AwsCdkFsharpStack(scope, id, props) as this =
                 RuleName = "buckt-event",
                 Description = "bucket event.",
                 EventPattern =
-                    EventPattern(Source = [| "aws.s3" |], DetailType = [| "Object Created" |], Detail = detail)
+                    EventPattern(
+                        Source = [| "aws.s3" |],
+                        DetailType = [| "Object Created" |],
+                        Detail =
+                            dict [ ("bucket", dict [ ("name", [| bucket.BucketName |]) ])
+                                   ("object", dict [ ("key", [| dict [ ("prefix", "test/") ] |]) ]) ]
+                    )
             )
         )
             .AddTarget(LambdaFunction(lfunc))

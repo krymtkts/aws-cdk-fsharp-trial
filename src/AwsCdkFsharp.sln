@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AwsCdkFsharp", "AwsCdkFsharp\AwsCdkFsharp.fsproj", "{27DACD33-3306-468D-8424-82E74C7B5B9B}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "api", "api\api.fsproj", "{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{27DACD33-3306-468D-8424-82E74C7B5B9B}.Release|x64.Build.0 = Release|Any CPU
 		{27DACD33-3306-468D-8424-82E74C7B5B9B}.Release|x86.ActiveCfg = Release|Any CPU
 		{27DACD33-3306-468D-8424-82E74C7B5B9B}.Release|x86.Build.0 = Release|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Debug|x64.Build.0 = Debug|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Debug|x86.Build.0 = Debug|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Release|x64.ActiveCfg = Release|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Release|x64.Build.0 = Release|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Release|x86.ActiveCfg = Release|Any CPU
+		{4778EDC2-5E33-4DA6-BB04-8E1FC641308D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
